@@ -1,0 +1,15 @@
+<mvc:View
+		controllerName="xproject.controller.BaseController"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+
+	<MessagePage
+			title="{i18n>notFoundTitle}"
+			text="{i18n>notFoundText}"
+			icon="{sap-icon://document}"
+			description=""
+			showNavButton="{device>/system/phone}"
+			navButtonPress="handleNavBack">
+	</MessagePage>
+
+</mvc:View>

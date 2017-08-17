@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		noDataText="{i18n>noUserFound}"
+		title="{i18n>addMemberTitleSelect}"
+		search="handleUserSearch"
+		confirm="handleAddMemberDialogConfirm"
+		items="{projectView>/users}">
+		<columns>
+			<Column width="12em">
+				<header>
+					<Text text="Name" />
+				</header>
+			</Column>
+			<Column width="12em">
+				<header>
+					<Text text="E-Mail" />
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<ObjectIdentifier title="{projectView>displayName}" />
+				<ObjectIdentifier title="{projectView>email}" />
+			</cells>
+		</ColumnListItem>		
+	</TableSelectDialog>
+</core:FragmentDefinition>

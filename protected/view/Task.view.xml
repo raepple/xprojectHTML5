@@ -1,0 +1,39 @@
+<mvc:View controllerName="xproject.controller.Task" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+
+	<semantic:DetailPage navButtonPress="handleNavBack"
+		showNavButton="true" title="{projects>name}">
+		<semantic:customHeaderContent>
+			<Button icon="sap-icon://log" press="handleLogout"/>
+		</semantic:customHeaderContent>
+		<semantic:saveAction>
+			<semantic:SaveAction id="saveTask" press="handleSaveTaskActionPress" visible="{appView>/editMode}"/>
+		</semantic:saveAction>
+		<semantic:deleteAction>
+			<semantic:DeleteAction id="deleteTask" press="handleDeleteTaskActionPress" visible="{= ${projects>taskId} > 0 &amp;&amp; ${appView>/editMode} }"/>
+		</semantic:deleteAction>		
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancelTask" press="handleCancelTaskActionPress" visible="{appView>/editMode}"/>
+		</semantic:cancelAction>		
+		<semantic:content>
+			<f:SimpleForm id="taskForm" maxContainerCols="2"
+				editable="true" layout="ResponsiveGridLayout" columnsL="1"
+				columnsM="1" class="editableForm">
+				<f:content>
+					<Label text="{i18n>taskLabelName}" />
+					<Input value="{projects>name}" editable="{= ${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} }" />
+					<Label text="{i18n>taskLabelDuration}" />
+					<Input value="{projects>duration}" editable="{= ${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} }" />
+					<Label text="{i18n>taskLabelStatus}" />
+					<Select id="taskStatus" selectedKey="{projects>status}" enabled="{= ${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} }">
+						<core:Item key="1" text="{i18n>taskStatusNotStarted}"></core:Item>
+						<core:Item key="2" text="{i18n>taskStatusInProgress}"></core:Item>
+						<core:Item key="3" text="{i18n>taskStatusCompleted}"></core:Item>
+					</Select>
+					<Label text="{i18n>taskLabelTime}" visible="{= ${projects>taskId} > 0 &amp;&amp; ${taskView>/projectJoined} }"/>
+					<Input value="{taskView>/time}" visible="{= ${projects>taskId} > 0 &amp;&amp; ${taskView>/projectJoined} }" editable="{= ${appView>/editMode} &amp;&amp; ${roleData>/ProjectMember} }" />
+				</f:content>
+			</f:SimpleForm>
+		</semantic:content>
+	</semantic:DetailPage>
+</mvc:View>

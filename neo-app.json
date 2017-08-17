@@ -1,0 +1,55 @@
+{
+  "authenticationMethod": "none",
+  "welcomeFile": "/index.html",
+  "logoutPage" : "/logout.html",
+  "routes": [
+  	{
+    	"path": "/services/userapi", 
+    	"target": {
+    		"type": "service",
+    		"name": "userapi"
+    	}
+	},
+	{
+		"path": "/api/projects", 
+		"target": {
+		  "type": "destination",
+		  "name": "projectAPI"
+		},
+		"description": "Project API"
+    },
+    {
+		"path": "/api/timesheets", 
+		"target": {
+		  "type": "destination",
+		  "name": "timesheetAPI"
+		},
+		"description": "Timesheet API"
+    }
+  ],
+  "securityConstraints": [
+    {
+		"permission": "accessProjectData",
+        "description": "Access Project Data",    	
+    	"protectedPaths": [
+        	"/protected/"
+    	]
+    }
+  ],
+  "cacheControl": [
+  	{
+      "directive": "private",
+      "maxAge": 0,
+      "path": "/protected/*html"
+    },
+    {
+      "directive": "private",
+      "maxAge": 0,
+      "path": "sap-ui-cachebuster-info.json"
+    },
+    {
+      "directive": "public",
+      "maxAge": 31536000
+    }
+  ]
+}

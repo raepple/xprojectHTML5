@@ -1,0 +1,49 @@
+<mvc:View
+		controllerName="xproject.controller.Home"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:semantic="sap.m.semantic">
+
+	<semantic:DetailPage			
+			title="Home"
+			busy="{homeView>/busy}">
+		<semantic:customHeaderContent>
+			<Button icon="sap-icon://log" press="handleLogout"/>
+		</semantic:customHeaderContent>
+		<semantic:content>
+			<TileContainer>
+			<StandardTile	
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				type="Monitor"
+				number="{i18n>msgWelcome}"
+				info="{userData>/email}"
+				title="{userData>/displayName}"
+			/>
+			<StandardTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				icon="sap-icon://person-placeholder"
+				title="ProjectMember"
+				infoState="{= ${roleData>/ProjectMember} ? 'Success' : 'Warning' }"
+				info="{= ${roleData>/ProjectMember} ? ${i18n>roleAssigned} : ${i18n>roleNotAssigned} }"
+				removable="false"
+			/>
+			<StandardTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				icon="sap-icon://manager"
+				title="ProjectManager"
+				infoState="{= ${roleData>/ProjectManager} ? 'Success' : 'Warning' }"
+				info="{= ${roleData>/ProjectManager} ? ${i18n>roleAssigned} : ${i18n>roleNotAssigned} }"
+				removable="false"
+			/>
+			<StandardTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				icon="sap-icon://activity-2"
+				title="{i18n>projectsJoined}"
+				number="{appView>/projectsJoined}"
+				numberUnit="{i18n>projects}"
+				removable="false"
+			/>
+			</TileContainer>
+		</semantic:content>
+	</semantic:DetailPage>
+</mvc:View>

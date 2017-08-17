@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+ 
+    <Dialog title="{i18n>addMemberTitleInput}">
+    	<content>
+			<f:SimpleForm id="idUserIdForm" maxContainerCols="2"
+						editable="true" layout="ResponsiveGridLayout" 
+						labelSpanL="2" labelSpanM="2" emptySpanL="0" 
+						emptySpanM="0" columnsL="1" columnsM="1">
+				<f:content>
+		    		<Label required="true" text="{i18n>userid}" />
+		    		<Input value="{projectView>userid}" />
+		    		<Label text="{i18n>firstname}" />
+		    		<Input value="{projectView>firstname}" />
+		    		<Label text="{i18n>lastname}" />
+		    		<Input value="{projectView>lastname}" />
+		    		<Label text="{i18n>email}" />
+		    		<Input value="{projectView>email}" />
+		    		<Label text="{i18n>company}" />
+		    		<Input value="{projectView>title}" />
+		    	</f:content>
+		    </f:SimpleForm>
+    	</content>
+	    <buttons>
+	    	<Button text="{i18n>confirm}" press="handleAddMemberDialogConfirm" />
+	    	<Button text="{i18n>close}" press="handleAddMemberDialogClose" />
+	    </buttons>
+    </Dialog>
+</core:FragmentDefinition>

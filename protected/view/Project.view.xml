@@ -1,0 +1,100 @@
+<mvc:View controllerName="xproject.controller.Project" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic">
+
+	<semantic:DetailPage navButtonPress="handleNavBack"
+		showNavButton="{device>/system/phone}" title="{i18n>projectTitle}"
+		busy="{projectView>/busy}">
+		<semantic:customHeaderContent>
+			<Button icon="sap-icon://log" press="handleLogout"/>
+		</semantic:customHeaderContent>
+		<semantic:addAction>
+			<semantic:AddAction id="addTask" press="handleAddTaskActionPress" visible="{= ${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} &amp;&amp; ${projectView>/selectedTab} === 'tasks' }" />
+			<semantic:AddAction id="addMember" press="handleAddMemberActionPress" visible="{= ${roleData>/ProjectManager} &amp;&amp; ${projectView>/selectedTab} === 'members' }"/>
+		</semantic:addAction>
+		<semantic:editAction>
+			<semantic:EditAction id="edit" press="handleEditProjectActionPress" visible="{= !${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} &amp;&amp; ${projectView>/selectedTab} === 'info' }"/>
+		</semantic:editAction>
+		<semantic:deleteAction>
+			<semantic:DeleteAction id="deleteProject" press="handleDeleteProjectActionPress" visible="{= !${appView>/editMode} &amp;&amp; ${roleData>/ProjectManager} &amp;&amp; ${projectView>/selectedTab} === 'info' }"/>
+		</semantic:deleteAction>		
+		<semantic:saveAction>
+			<semantic:SaveAction id="saveProject" press="handleSaveProjectActionPress" visible="{= ${appView>/editMode} &amp;&amp; ${projectView>/selectedTab} === 'info' }"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="handleCancelProjectActionPress" visible="{= ${appView>/editMode} &amp;&amp; ${projectView>/selectedTab} === 'info' }"/>
+		</semantic:cancelAction>
+		<semantic:content>
+			<IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}"
+				class="sapUiResponsiveContentPadding"
+				select="handleIconTabBarSelect">
+				<items>
+					<IconTabFilter text="{i18n>projectInfo}" key="info">
+						<f:SimpleForm id="projectForm" maxContainerCols="2"
+							editable="true" layout="ResponsiveGridLayout" columnsL="1"
+							columnsM="1" class="editableForm">
+							<f:content>
+								<Label text="{i18n>projectName}" />
+								<Input value="{projects>name}" editable="{appView>/editMode}" />
+								<Label text="{i18n>projectDescription}" />
+								<Input value="{projects>description}" editable="{appView>/editMode}" />
+								<Label text="{i18n>projectStartDate}" />
+								<DatePicker value="{projects>startDate}" valueFormat="yyyyMMdd"
+									displayFormat="long" class="sapUiSmallMarginBottom" editable="{appView>/editMode}" />
+								<Label text="{i18n>projectEndDate}" />
+								<DatePicker value="{projects>endDate}" valueFormat="yyyyMMdd"
+									displayFormat="long" class="sapUiSmallMarginBottom" editable="{appView>/editMode}" />
+							</f:content>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>projectTasks}" key="tasks">
+						<Table id="taskTable" items="{projects>tasks}" itemPress="handleTaskSelect" mode="SingleSelectMaster">
+							<columns>
+								<Column width="12em">
+									<Text text="{i18n>taskName}" />
+								</Column>
+								<Column width="12em">
+									<Text text="{i18n>taskDuration}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="DetailAndActive" detailPress="handleTaskEdit">
+									<cells>
+										<Text text="{projects>name}" />
+										<Text text="{projects>duration}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>projectMembers}" key="members">
+						<Table id="memberTable" items="{projects>members}" selectionChange="handleMemberSelect" mode="{projectView>/memberMode}">
+							<columns>
+								<Column width="12em">
+									<Text text="{i18n>userid}" />
+								</Column>
+								<Column width="12em">
+									<Text text="{i18n>displayName}" />
+								</Column>
+								<Column width="12em">
+									<Text text="{i18n>email}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{projects>userid}" />
+										<Text text="{projects>displayName}" />
+										<Text text="{projects>email}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+
+	</semantic:DetailPage>
+
+</mvc:View>

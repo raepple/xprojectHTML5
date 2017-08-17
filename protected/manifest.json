@@ -1,0 +1,158 @@
+{
+	"_version": "1.3.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "xproject",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.2.0",
+		"rootView": {
+			"viewName": "xproject.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.36.0",
+			"libs": {
+				"sap.ui.core": {
+					"minVersion": "1.36.0"
+				},
+				"sap.m": {
+					"minVersion": "1.36.0"
+				},
+				"sap.ui.layout": {
+					"minVersion": "1.36.0"
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "xproject.i18n.i18n"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "xproject.view",
+				"controlId": "idAppControl",
+				"controlAggregation": "detailPages",
+				"bypassed": {
+					"target": [
+						"projectList"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "home",
+					"target": [
+						"projectList",
+						"home"
+					]
+				},
+				{
+					"pattern": "project/{projectId}",
+					"name": "project",
+					"target": [
+						"projectList",
+						"project"
+					]
+				},
+				{
+					"pattern": "project/{projectId}/member/{memberId}",
+					"name": "member",
+					"target": [
+						"projectList",
+						"member"
+					]
+				},
+				{
+					"pattern": "project/{projectId}/task/{taskId}",
+					"name": "task",
+					"target": [
+						"projectList",
+						"task"
+					]
+				}
+			],
+			"targets": {
+				"projectList": {
+					"viewName": "ProjectList",
+					"viewLevel": 0,
+					"viewId": "projectList",
+					"controlAggregation": "masterPages"
+				},
+				"home": {
+					"viewName": "Home",
+					"viewId": "home",
+					"viewLevel": 1,
+					"controlAggregation": "detailPages"
+				},
+				"project": {
+					"viewName": "Project",
+					"viewId": "project",
+					"viewLevel": 1,
+					"controlAggregation": "detailPages"
+				},
+				"member": {
+					"viewName": "Member",
+					"viewId": "member",
+					"viewLevel": 2,
+					"controlAggregation": "detailPages"
+				},
+				"task": {
+					"viewName": "Task",
+					"viewId": "task",
+					"viewLevel": 2,
+					"controlAggregation": "detailPages"
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "protected",
+		"_version": "1.1.0"
+	}
+}

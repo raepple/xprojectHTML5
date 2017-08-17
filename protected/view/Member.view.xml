@@ -1,0 +1,38 @@
+<mvc:View controllerName="xproject.controller.Member" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic">
+
+	<semantic:DetailPage navButtonPress="handleNavBack"
+		showNavButton="true" title="{memberView>/title}"
+		busy="{memberView>/busy}">
+		<semantic:customHeaderContent>
+			<Button icon="sap-icon://log" press="handleLogout"/>
+		</semantic:customHeaderContent>
+		<semantic:deleteAction>
+			<semantic:DeleteAction id="deleteMember" press="handleDeleteMemberActionPress" visible="{roleData>/ProjectManager}"/>
+		</semantic:deleteAction>		
+		<semantic:content>
+			<Table id="timeSheetsTable" items="{projects>reporting/timeSheets}"
+				oDataText="{i18n>/memberNoDataText}">
+				<columns>
+					<Column width="12em">
+						<Text text="{i18n>memberTaskName}" />
+					</Column>
+					<Column width="12em">
+						<Text text="{i18n>memberTaskReportedTime}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{projects>task/name}" />
+							<Text text="{projects>time}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<l:HorizontalLayout class="sapUiSmallMargin">
+				<Text text="{i18n>memberTotalReportedTime}: {projects>reporting/totalReportedTime}" />
+			</l:HorizontalLayout>
+		</semantic:content>
+	</semantic:DetailPage>
+</mvc:View>

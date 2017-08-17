@@ -1,0 +1,16 @@
+h3 { 
+	padding-top: 15px;
+	padding-left: 10px;
+}
+
+p {
+	padding-left: 10px;
+}
+
+.content h2.white {
+  	color: #fff;
+}
+
+.tileLayout {
+	float: left;
+}

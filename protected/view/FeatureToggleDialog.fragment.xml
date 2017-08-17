@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+ 
+    <Dialog title="{i18n>featureTitle}">
+    	<content>
+			<f:SimpleForm id="idFeatureForm" maxContainerCols="2"
+						editable="true" layout="ResponsiveGridLayout" 
+						labelSpanL="2" labelSpanM="2" emptySpanL="0" 
+						emptySpanM="0" columnsL="1" columnsM="1">
+				<f:content>
+		    		<Label text="{i18n>roleProvisioning}" />
+		    		<Switch id="idRoleProvisioning" state="{appView>/roleProvisioning}" />
+		    		<Label text="{i18n>directoryIntegration}" />
+		    		<Switch id="idDirectoryIntegration" state="{appView>/directoryIntegration}"/>
+		    	</f:content>
+		    </f:SimpleForm>
+    	</content>
+	    <buttons>
+	    	<Button text="{i18n>featureClose}" press="handleCloseFeatureDialog" />
+	    </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,58 @@
+<mvc:View
+		controllerName="xproject.controller.ProjectList"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:semantic="sap.m.semantic">
+
+	<semantic:MasterPage
+			title="{projectListView>/title}">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentLeft>
+					<Button icon="sap-icon://home" press="handleNavigateHome"/>
+				</contentLeft>
+				<contentMiddle>
+					<SearchField
+							id="searchField"
+							showRefreshButton="{= !${device>/support/touch} }"
+							tooltip="{i18n>projectListSearchTooltip}"
+							width="100%"
+							search="handleSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:customFooterContent>
+			<Button id="joinProjectButton" icon="sap-icon://add-activity-2" press="handleJoinProject" visible="false"/>
+			<Button id="addProjectButton" icon="sap-icon://add" press="handleAddActionPress" visible="false"/>
+			<Button id="featureToggleButton" icon="sap-icon://activate" press="handleShowFeatureToggles"/>
+		</semantic:customFooterContent>
+		<semantic:content>
+			<PullToRefresh
+					id="pullToRefresh"
+					visible="{device>/support/touch}"
+					refresh="handleRefresh" />
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List
+					id="list"
+					items="{projects>/}"
+					noDataText="{projectListView>/noDataText}"
+					mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished="handleUpdateFinished"
+					selectionChange="handleSelectionChange">
+				<items>
+					<ObjectListItem
+							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+							press="handleSelectionChange"
+							title="{projects>name}"
+							icon="{= ${projects>joined} || ${roleData>/ProjectManager} ? 'sap-icon://activity-2' : 'sap-icon://add-activity-2'}"
+					/>
+				</items>
+			</List>
+		</semantic:content>
+	</semantic:MasterPage>
+
+</mvc:View>

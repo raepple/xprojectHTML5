@@ -1,0 +1,79 @@
+html {
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	font-family:Lucida Sans Unicode;
+}
+
+.subtitle {
+	margin-top: 0px;
+	margin-bottom: 25px;
+	font-size: 16px;
+}
+	
+h2 {
+	font-size: 45px;
+	margin-bottom: 0px;
+}
+		
+@media (max-width:700px) {
+  body {
+    margin: 1em 2em 2em;		    
+  }
+}
+
+@media (max-width:400px) {
+  body {
+    margin: 3em 1.5em 2em;
+  }
+}
+
+@media (max-height:480px) and (max-width:400px) {
+  .content {
+    margin: auto;
+  }
+}
+
+.button {
+	 display: inline-block;
+	 padding: 6px 12px;
+	 margin-bottom: 0;
+	 font-size: 16px;
+	 font-weight: bold;
+	 line-height: 1.42857143;
+	 text-align: center;
+	 white-space: nowrap;
+	 vertical-align: middle;
+	 cursor: pointer;
+	 border: 1px solid transparent;
+	 border-radius: 4px;
+	 background-color: #16a1e1;
+	 color: white;			 
+	 margin: 6px;
+	 text-decoration: none;
+}
+		
+.button:HOVER {
+	background-color: #3b5997;
+}
+
+.icon {
+	float: right;
+}
+
+.content {
+	background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+	background: rgba(255, 255, 255, .8);
+	border-radius: 2px;
+	box-shadow: 0 4px 6px 1px rgba(50, 50, 50, 0.14);
+	box-sizing: border-box;
+	color: black;
+	line-height: 1.5;
+	min-width: 640px;
+	padding: 30px 35px 30px 37px;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
