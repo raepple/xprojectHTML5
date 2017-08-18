@@ -5,7 +5,7 @@ Follow the instructions below to install the application in your SAP Cloud Platf
 
 ## Setup instructions
 1.	In your trial account on Neo, select **Applications > HTML5 Applications > Import from File**
-2.	Import the HTML5 application's ZIP file from the root directory of this repository. Choose Application name *xproject* and version name *1.0.0*
+2.	Import the [HTML5 application's ZIP file](https://github.com/raepple/xprojectHTML5/blob/master/xproject_HTML5.zip) from the root directory of this repository. Choose Application name *xproject* and version name *1.0.0*
 3.	Select the new application **xproject** and go to **Versioning > Versions**. Click the **Activate** button for the version 1.0.0
 4.	Click **Edit Online** at the top of the page. Web IDE opens.
 5.	Click **Clone**, **Commit and Push** and **OK**
